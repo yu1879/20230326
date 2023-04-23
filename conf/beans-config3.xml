@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd 
+       					   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+       					   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+
+	<context:property-placeholder
+		location="data.properties" />
+	<bean id="clazz1" p:id="1" p:name="${clazz.name}"
+		p:credit="${clazz.credit}" class="spring.core.session03.bean.Clazz" />
+
+	<bean id="clazz2" p:id="2" p:name="English" p:credit="2"
+		class="spring.core.session03.bean.Clazz" />
+	<bean id="clazz3" p:id="2" p:name="Math" p:credit="1"
+		class="spring.core.session03.bean.Clazz" />
+	<bean id="student1" p:id="1" p:name="John"
+		class="spring.core.session03.bean.Student">
+		<property name="clazzs">
+
+			<set>
+				<ref bean="clazz1" />
+				<ref bean="clazz2" />
+				<ref bean="clazz3" />
+
+			</set>
+		</property>
+
+	</bean>
+	<bean id="student2" p:id="2" p:name="Mary"
+		class="spring.core.session03.bean.Student">
+		<property name="clazzs">
+
+			<set>
+				<ref bean="clazz1" />
+				<ref bean="clazz3" />
+
+			</set>
+		</property>
+
+	</bean>
+	<bean id="teacher1" p:id="1" p:name="Bob"
+		class="spring.core.session03.bean.Teacher">
+
+		<property name="students">
+
+			<set>
+				<ref bean="student1" />
+				<ref bean="student2" />
+
+			</set>
+
+		</property>
+		<property name="subjects">
+
+			<list>
+				<value>Program</value>
+				<value>English</value>
+			</list>
+		</property>
+		<property name="salary">
+
+			<map>
+				<entry key="base">
+					<value>50000</value>
+				</entry>
+				<entry key="addition">
+					<value>20000</value>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	<util:set id="students">
+		<ref bean="student1" />
+		<ref bean="student2" />
+	</util:set>
+	<util:list id="subjects">
+		<value>Program</value>
+		<value>Music</value>
+		<value>English</value>
+		<value>Math</value>
+	</util:list>
+	<util:map id="salary">
+		<entry>
+			<key>
+				<value>base</value>
+			</key>
+			<value>65000</value>
+		</entry>
+		<entry>
+			<key>
+				<value>addition</value>
+			</key>
+			<value>18000</value>
+		</entry>
+	</util:map>
+	<bean id="teacher2" p:id="2" p:name="Jean"
+		p:students-ref="students" p:subjects-ref="subjects"
+		p:salary-ref="salary" class="spring.core.session03.bean.Teacher" />
+
+	<bean id="dbConn" init-method="init" destroy-method="destroy"
+		class="spring.core.session03.bean.DBConn" />
+
+	<bean id="carFactory"
+		class="spring.core.session03.factory.CarFactory" />
+
+
+
+</beans>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+	<bean id="lotto" scope="prototype"
+		class="spring.core.session02.bean.Lotto" />
+	<bean id="author1" class="spring.core.session02.bean.Author" />
+	<bean id="author2" class="spring.core.session02.bean.Author">
+		<property name="name">
+			<value>John</value>
+		</property>
+		<property name="sex">
+			<value>男</value>
+		</property>
+		<property name="age">
+			<value>28</value>
+		</property>
+	</bean>
+	<bean id="author3" class="spring.core.session02.bean.Author">
+
+		<constructor-arg index="0" value="Mary" />
+		<constructor-arg index="1" value="女" />
+		<constructor-arg index="2" value="21" />
+
+	</bean>
+	<bean id="author4" p:name="Helen" p:sex="女" p:age="22"
+		class="spring.core.session02.bean.Author" />
+	<bean id="author5" c:name="Tom" c:sex="男" c:age="30"
+		class="spring.core.session02.bean.Author" />
+	<bean id="book1" class="spring.core.session02.bean.Book" />
+	<bean id="book2" class="spring.core.session02.bean.Book">
+
+		<property name="name">
+
+			<value>JavaScript</value>
+
+		</property>
+		<property name="price">
+
+			<value>300</value>
+
+		</property>
+		<property name="author" ref="author2" />
+	</bean>
+	<bean id="book3" class="spring.core.session02.bean.Book">
+
+		<constructor-arg index="0" value="Spring" />
+		<constructor-arg index="1" value="600" />
+		<constructor-arg index="2" ref="author3" />
+
+	</bean>
+	<bean id="book4" p:name="Python" p:price="400"
+		p:author-ref="author4" class="spring.core.session02.bean.Book" />
+	<bean id="book5" c:name="VB" c:price="300" c:author-ref="author5"
+		class="spring.core.session02.bean.Book" />
+	<bean id="white" p:name="White"
+		class="spring.core.session02.bean.Color" />
+	<bean id="red" p:name="Red"
+		class="spring.core.session02.bean.Color" />
+	<bean id="color" p:name="Blue"
+		class="spring.core.session02.bean.Color" />
+	<bean id="a4" p:name="A4" class="spring.core.session02.bean.Size" />
+	<bean id="b5" p:name="B5" class="spring.core.session02.bean.Size" />
+	<!-- <bean id="paper1" p:id="1" autowire="byType" class="spring.core.session02.bean.Paper" 
+		/> -->
+	<bean id="paper2" p:id="2" autowire="byName"
+		class="spring.core.session02.bean.Paper" />
+	<bean id="paper3" p:id="3" autowire="constructor"
+	class="spring.core.session02.bean.Paper" />
+
+
+</beans>
