@@ -24,6 +24,8 @@ public class AOPLabTest {
 			System.out.println("舞者 dancer 轉歌者 back singer");
 			Singer singer = (Singer) dancer;
 			singer.sing();
+			System.out.println("轉型成功");
+
 		}
 	}
 }

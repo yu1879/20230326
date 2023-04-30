@@ -1,4 +1,4 @@
-package spring.core.session05.aop;
+package spring.core.session05.aop_lab;
 
 import spring.core.session05.aop_lab.Singer;
 
