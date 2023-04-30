@@ -22,7 +22,7 @@ public class MySecurityAspect {
 		Object result = null;
 
 		try {
-
+			result = joinPoint.proceed();
 		} catch (Throwable ex) {
 			// TODO: handle exception
 		} finally {
