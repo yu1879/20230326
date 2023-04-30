@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.aopalliance.intercept.Joinpoint;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -36,6 +37,12 @@ public class MyLoggerAspect {
 	public void afterAdvice(JoinPoint joinpoint) {
 //		String methodName = joinpoint.getSignature().getName();
 //		Object[] args = joinpoint.getArgs(); 
-		System.out.println("呼叫後置通知\n");
+		System.out.printf("呼叫後置通知\n");
+	}
+
+	@AfterThrowing(value = "pt()", throwing = "ex")
+	public void afterThrowingAdvice(Exception ex) {
+		System.out.printf("呼叫異常通知-ex:%s\n", ex);
+
 	}
 }
