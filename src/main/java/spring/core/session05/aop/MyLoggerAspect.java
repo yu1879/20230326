@@ -35,7 +35,7 @@ public class MyLoggerAspect {
 	@After(value = "pt()")
 	public void afterAdvice(JoinPoint joinpoint) {
 //		String methodName = joinpoint.getSignature().getName();
-//		Object[] args = joinpoint.getArgs();
+//		Object[] args = joinpoint.getArgs(); 
 		System.out.println("呼叫後置通知\n");
 	}
 }
