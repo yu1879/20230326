@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 import org.aopalliance.intercept.Joinpoint;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -24,10 +25,17 @@ public class MyLoggerAspect {
 	public void pt2() {
 	}
 
-	@Before(value = "pt() && !pt2()")
+	@Before(value = "pt() ")
 	public void beforeAdvice(JoinPoint joinpoint) {
 		String methodName = joinpoint.getSignature().getName();
 		Object[] args = joinpoint.getArgs();
 		System.out.printf("呼叫前置通知-方法名稱:%s 方法參數:%s\n", methodName, Arrays.toString(args));
+	}
+
+	@After(value = "pt()")
+	public void afterAdvice(JoinPoint joinpoint) {
+//		String methodName = joinpoint.getSignature().getName();
+//		Object[] args = joinpoint.getArgs();
+		System.out.println("呼叫後置通知\n");
 	}
 }
