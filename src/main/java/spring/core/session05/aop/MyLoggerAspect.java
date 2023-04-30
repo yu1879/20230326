@@ -6,6 +6,7 @@ import org.aopalliance.intercept.Joinpoint;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +14,17 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Order(1)
 public class MyLoggerAspect {
-	@Before(value = "execution(* *(..))")
+	// @Before(value = "execution(* *(..))")
+//	@Before(value = "pt()")
+	@Pointcut(value = "execution(* spring.core.session05.aop.CalcImpl.*(..))")
+	public void pt() {
+	}
+
+	@Pointcut(value = "execution(* spring.core.session05.aop.CalcImpl.div(..))")
+	public void pt2() {
+	}
+
+	@Before(value = "pt() && !pt2()")
 	public void beforeAdvice(JoinPoint joinpoint) {
 		String methodName = joinpoint.getSignature().getName();
 		Object[] args = joinpoint.getArgs();
