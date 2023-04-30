@@ -5,6 +5,7 @@ import java.util.Arrays;
 import org.aopalliance.intercept.Joinpoint;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -43,6 +44,12 @@ public class MyLoggerAspect {
 	@AfterThrowing(value = "pt()", throwing = "ex")
 	public void afterThrowingAdvice(Exception ex) {
 		System.out.printf("呼叫異常通知-ex:%s\n", ex);
+
+	}
+
+	@AfterReturning(value = "pt()", returning = "result")
+	public void afterReturningAdvice(Object result) {
+		System.out.printf("呼叫返回通知-result:%s\n", result);
 
 	}
 }
