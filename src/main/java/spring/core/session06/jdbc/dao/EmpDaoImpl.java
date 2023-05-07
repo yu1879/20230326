@@ -88,7 +88,7 @@ public class EmpDaoImpl implements EmpDao {
 		String sql = "Delete from emp where eid=?";
 		int rowcount = jdbcTemplate.update(sql, eid);
 		// TODO Auto-generated method stub
-		return 0;
+		return rowcount;
 	}
 
 	@Override

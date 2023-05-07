@@ -10,7 +10,7 @@ public class EmpDeleteTest {
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("jdbc-config.xml");
 		EmpDao empDao = ctx.getBean(EmpDao.class);
 
-		int rowcount = empDao.delete(9);
+		int rowcount = empDao.delete(8);
 		System.out.println(rowcount);
 		if (rowcount == 0) {
 			System.out.println("刪除失敗");
