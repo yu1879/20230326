@@ -32,8 +32,18 @@ public class EmpDaoImpl implements EmpDao {
 
 	@Override
 	public Optional<Emp> getOne(Integer eid) {
+		String sql = "select eid, ename, age, createtime from emp where eid=?";
+		Object[] argsObjects = { eid };
+		Emp emp = null;
+		try {
+		 emp = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Emp.class));
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		Optional<Emp> optEmp = Optional.ofNullable(emp);
 		// TODO Auto-generated method stub
-		return Optional.empty();
+		return optEmp;
 	}
 
 	@Override
