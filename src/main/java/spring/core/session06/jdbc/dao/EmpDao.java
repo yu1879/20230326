@@ -9,7 +9,7 @@ import spring.core.session06.jdbc.entity.Emp;
 public interface EmpDao {
 	List<Map<String, Object>> queryAll();
 
-	List<Emp> querEmps();
+	List<Emp> queryEmps();
 
 	Optional<Emp> getOne(Integer eid);
 

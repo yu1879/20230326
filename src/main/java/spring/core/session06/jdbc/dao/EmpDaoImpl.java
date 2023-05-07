@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -23,9 +24,10 @@ public class EmpDaoImpl implements EmpDao {
 	}
 
 	@Override
-	public List<Emp> querEmps() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Emp> queryEmps() {
+		String sql = "select eid, ename, age, createtime from emp";
+		List<Emp> emps = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Emp.class));
+		return emps;
 	}
 
 	@Override

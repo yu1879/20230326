@@ -12,6 +12,7 @@ public class DBconnTest {
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("jdbc-config.xml");
 		EmpDao empDao = ctx.getBean(EmpDao.class);
 		System.out.println(empDao.queryAll());
+		System.out.println(empDao.queryEmps());
 //		ComboPooledDataSource cp = ctx.getBean("dataSource", ComboPooledDataSource.class);
 //
 //		try {
