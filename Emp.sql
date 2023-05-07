@@ -14,3 +14,4 @@ insert into emp(ename, age) values('mary', 30);
 insert into emp(ename, age) values('bobo', 29);
 -- 查詢 Emp 資料
 select eid, ename, age, createtime from emp;
+select  count(*) from emp
