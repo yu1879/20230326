@@ -15,6 +15,8 @@ public interface EmpDao {
 
 	Integer count();
 
+	Double getAvgOfAge();
+
 	int create(String ename, Integer age);
 
 	int[] batchCreate(List<Object[]> list);

@@ -77,4 +77,11 @@ public class EmpDaoImpl implements EmpDao {
 		return 0;
 	}
 
+	@Override
+	public Double getAvgOfAge() {
+		String sql = "select AVG(age) from emp";
+		Double aveOfAge = jdbcTemplate.queryForObject(sql, Double.class);
+		return aveOfAge;
+	}
+
 }

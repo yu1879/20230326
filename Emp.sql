@@ -15,3 +15,4 @@ insert into emp(ename, age) values('bobo', 29);
 -- 查詢 Emp 資料
 select eid, ename, age, createtime from emp;
 select  count(*) from emp
+select AVG(age) from emp
