@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 public class Audience {
 	@Pointcut(value = "execution(* spring.core.session05.aop_lab.Performance.perform(..))")
 	public void pt() {
+
 	}
 
 	@Before(value = "pt()")
