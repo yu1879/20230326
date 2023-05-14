@@ -9,11 +9,12 @@ public class BookManyServiceImpl implements BookManyService {
 	private BookOneService bookOneService;
 
 	@Override
-	public void BookManyService(String username, Integer... bookIds) {
+	public void buyMany(String username, Integer... bookIds) {
 		// TODO Auto-generated method stub
 		for (Integer bookId : bookIds) {
 			bookOneService.buyOne(username, bookId);
 		}
+
 	}
 
 }
