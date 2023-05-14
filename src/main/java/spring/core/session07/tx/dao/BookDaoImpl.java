@@ -7,6 +7,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import spring.core.session07.tx.exception.InsufficientAmount;
+import spring.core.session07.tx.exception.InsufficientStock;
+
 @Repository
 public class BookDaoImpl implements BookDao {
 	@Autowired
@@ -31,7 +34,7 @@ public class BookDaoImpl implements BookDao {
 	}
 
 	@Override
-	public Integer updateBookStock(Integer bookId) {
+	public Integer updateBookStock(Integer bookId) throws InsufficientStock {
 		Integer bookStock = getBookStocket(bookId);
 		if (bookStock <= 0) {
 			throw new RuntimeException("書本庫存量不足: book id=" + bookId + ", book stock=" + bookStock);
@@ -42,7 +45,7 @@ public class BookDaoImpl implements BookDao {
 	}
 
 	@Override
-	public Integer updateWallet(String username, Integer bookPrice) {
+	public Integer updateWallet(String username, Integer bookPrice) throws InsufficientAmount {
 		Integer balance = getWalletBalance(username);
 		if (balance < bookPrice) {
 			throw new RuntimeException("餘額不足: balance= $" + balance + ", bookPrice=$" + bookPrice);
