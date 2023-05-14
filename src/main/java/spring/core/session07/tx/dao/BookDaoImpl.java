@@ -43,7 +43,7 @@ public class BookDaoImpl implements BookDao {
 			throw new RuntimeException("餘額不足: balance= $" + balance + ", bookPrice=$" + bookPrice);
 
 		}
-		String sql = "update wallet set balance = balance-? where  username= ? ";
+		String sql = "update wallet set balance = balance-? where username= ?";
 		int rowcount = jdbcTemplate.update(sql, bookPrice, username);
 		return rowcount;
 	}
