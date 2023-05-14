@@ -37,7 +37,7 @@ public class BookDaoImpl implements BookDao {
 	public Integer updateBookStock(Integer bookId) throws InsufficientStock {
 		Integer bookStock = getBookStocket(bookId);
 		if (bookStock <= 0) {
-			throw new RuntimeException("書本庫存量不足: book id=" + bookId + ", book stock=" + bookStock);
+			throw new InsufficientStock("書本庫存量不足: book id=" + bookId + ", book stock=" + bookStock);
 		}
 		String sql = "update stock set book_amount = book_amount - 1 where book_id = ? ";
 		int rowcount = jdbcTemplate.update(sql, bookId);
@@ -48,7 +48,7 @@ public class BookDaoImpl implements BookDao {
 	public Integer updateWallet(String username, Integer bookPrice) throws InsufficientAmount {
 		Integer balance = getWalletBalance(username);
 		if (balance < bookPrice) {
-			throw new RuntimeException("餘額不足: balance= $" + balance + ", bookPrice=$" + bookPrice);
+			throw new InsufficientAmount("餘額不足: balance= $" + balance + ", bookPrice=$" + bookPrice);
 
 		}
 		String sql = "update wallet set balance = balance- ? where username= ?";
