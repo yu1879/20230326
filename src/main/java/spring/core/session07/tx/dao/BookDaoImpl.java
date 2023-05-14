@@ -1,5 +1,6 @@
 package spring.core.session07.tx.dao;
 
+import org.apache.taglibs.standard.extra.spath.Step;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -11,7 +12,7 @@ public class BookDaoImpl implements BookDao {
 
 	@Override
 	public Integer getBookPrice(Integer bookId) {
-		String sql = "select book_price from book where book_id";
+		String sql = "select book_price from book where book_id = ?";
 		Object[] args = { bookId };
 		Integer bookPrice = jdbcTemplate.queryForObject(sql, args, Integer.class);
 		return bookPrice;
@@ -19,7 +20,7 @@ public class BookDaoImpl implements BookDao {
 
 	@Override
 	public Integer getBookStocket(Integer bookId) {
-		String sql = "select book_amount from stock where book_id";
+		String sql = "select book_amount from stock where book_id = ?";
 		Object[] args = { bookId };
 		Integer bookStock = jdbcTemplate.queryForObject(sql, args, Integer.class);
 		return bookStock;
@@ -31,7 +32,7 @@ public class BookDaoImpl implements BookDao {
 		if (bookStock <= 0) {
 			throw new RuntimeException("書本庫存量不足: book id=" + bookId + ", book stock=" + bookStock);
 		}
-		String sql = "update stock set book_amount = book_amount-1 where book_id = ? ";
+		String sql = "update stock set book_amount = book_amount - 1 where book_id = ? ";
 		int rowcount = jdbcTemplate.update(sql, bookId);
 		return rowcount;
 	}
@@ -43,15 +44,17 @@ public class BookDaoImpl implements BookDao {
 			throw new RuntimeException("餘額不足: balance= $" + balance + ", bookPrice=$" + bookPrice);
 
 		}
-		String sql = "update wallet set balance = balance-? where username= ?";
+		String sql = "update wallet set balance = balance- ? where username= ?";
 		int rowcount = jdbcTemplate.update(sql, bookPrice, username);
 		return rowcount;
 	}
 
 	@Override
 	public Integer getWalletBalance(String username) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select balance from wallet where username= ?";
+		Object[] args = { username };
+		Integer balance = jdbcTemplate.queryForObject(sql, args, Integer.class);
+		return balance;
 	}
 
 }

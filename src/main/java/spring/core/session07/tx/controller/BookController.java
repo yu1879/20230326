@@ -1,7 +1,10 @@
 package spring.core.session07.tx.controller;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Propagation;
 
 import spring.core.session07.tx.service.BookManyService;
 import spring.core.session07.tx.service.BookOneService;
@@ -22,6 +25,6 @@ public class BookController {
 	public void buyManyBook(String username, Integer... bookIds) {
 
 		bookManyService.buyMany(username, bookIds);
-		System.out.println("bookManyBook OK");
+		System.out.println("bookManyBooks OK");
 	}
 }
