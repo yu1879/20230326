@@ -7,5 +7,7 @@ public interface BookDao {
 
 	Integer updateBookStock(Integer bookId);
 
-	Integer updateWallet(String username, Integer price);
+	Integer getWalletBalance(String username);
+
+	Integer updateWallet(String username, Integer bookPrice);
 }
