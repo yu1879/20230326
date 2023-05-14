@@ -16,9 +16,10 @@ public class BookOneServiceImpl implements BookOneService {
 	@Autowired
 	private BookDao bookDao;
 
-	@Transactional(propagation = Propagation.REQUIRED)
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { InsufficientAmount.class,
+			InsufficientStock.class })
 	@Override
-	public void buyOne(String username, Integer bookId) throws InsufficientAmount,InsufficientStock{
+	public void buyOne(String username, Integer bookId) throws InsufficientAmount, InsufficientStock {
 		Integer bookPrice = bookDao.getBookPrice(bookId);
 		bookDao.updateBookStock(bookId);
 		bookDao.updateWallet(username, bookPrice);

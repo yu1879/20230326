@@ -12,7 +12,9 @@ public class BookManyServiceImpl implements BookManyService {
 	@Autowired
 	private BookOneService bookOneService;
 
-	@Transactional
+	@Transactional(rollbackFor = { InsufficientStock.class, InsufficientAmount.class }
+
+	)
 	@Override
 	public void buyMany(String username, Integer... bookIds) throws InsufficientStock, InsufficientAmount {
 		// TODO Auto-generated method stub

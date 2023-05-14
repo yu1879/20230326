@@ -28,4 +28,4 @@ insert into stock(book_id, book_amount) values(1, 10);
 insert into stock(book_id, book_amount) values(2, 10);
 insert into wallet(username, balance) values('John', 200);
 insert into wallet(username, balance) values('Mary', 200);
-SELECT @@transaction_ISOLATION;
+--SELECT @@transaction_ISOLATION;
