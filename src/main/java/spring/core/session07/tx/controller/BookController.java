@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Propagation;
 
+import spring.core.session07.tx.exception.InsufficientAmount;
+import spring.core.session07.tx.exception.InsufficientStock;
 import spring.core.session07.tx.service.BookManyService;
 import spring.core.session07.tx.service.BookOneService;
 
@@ -18,13 +20,23 @@ public class BookController {
 
 	public void buyOneBook(String username, Integer bookId) {
 
-		bookOneService.buyOne(username, bookId);
+		try {
+			bookOneService.buyOne(username, bookId);
+		} catch (InsufficientStock | InsufficientAmount e) {
+			// TODO Auto-generated catch block
+			System.out.println(e);
+		}
 		System.out.println("buyOneBook OK");
 	}
 
 	public void buyManyBook(String username, Integer... bookIds) {
 
-		bookManyService.buyMany(username, bookIds);
+		try {
+			bookManyService.buyMany(username, bookIds);
+		} catch (InsufficientStock | InsufficientAmount e) {
+			// TODO Auto-generated catch block
+			System.out.println(e);
+		}
 		System.out.println("bookManyBooks OK");
 	}
 }
